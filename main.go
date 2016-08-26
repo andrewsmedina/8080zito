@@ -41,6 +41,11 @@ func disassemble(b []byte, pc int) int {
 		fmt.Println("INR    C")
 	case 0x0d:
 		fmt.Println("DCR    C")
+	case 0x0e:
+		fmt.Printf("MVI    C,#0x%02x\n", b[pc+1])
+		op = 1
+	case 0x0f:
+		fmt.Println("RRC")
 	case 0x3e:
 		fmt.Printf("MVI    A,#0x%02x\n", b[pc+1])
 		op = 2
