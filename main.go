@@ -46,6 +46,14 @@ func disassemble(b []byte, pc int) int {
 		op = 1
 	case 0x0f:
 		fmt.Println("RRC")
+	case 0x10:
+		fmt.Println("-")
+	case 0x14:
+		fmt.Println("INR    D")
+	case 0x18:
+		fmt.Println("-")
+	case 0x19:
+		fmt.Println("DAD    D")
 	case 0x1a:
 		fmt.Println("LDAX    D")
 	case 0x3e:
@@ -57,6 +65,8 @@ func disassemble(b []byte, pc int) int {
 		fmt.Println("MOV    A,B")
 	case 0x8d:
 		fmt.Println("ADC    L")
+	case 0x93:
+		fmt.Println("SUB    E")
 	case 0xc3:
 		fmt.Printf("JMP    $%02x%02x\n", b[pc+2], b[pc+1])
 		op = 3
