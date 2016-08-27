@@ -46,12 +46,25 @@ func disassemble(b []byte, pc int) int {
 		op = 1
 	case 0x0f:
 		fmt.Println("RRC")
+	case 0x1a:
+		fmt.Println("LDAX    D")
 	case 0x3e:
 		fmt.Printf("MVI    A,#0x%02x\n", b[pc+1])
 		op = 2
+	case 0x38:
+		fmt.Println("-")
+	case 0x78:
+		fmt.Println("MOV    A,B")
+	case 0x8d:
+		fmt.Println("ADC    L")
 	case 0xc3:
 		fmt.Printf("JMP    $%02x%02x\n", b[pc+2], b[pc+1])
 		op = 3
+	case 0xd6:
+		fmt.Printf("SUI    #0x%02x\n", b[pc+1])
+		op = 2
+	case 0xff:
+		fmt.Println("RST    7")
 	default:
 		fmt.Printf("MISSING  %x\n", code)
 	}
