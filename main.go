@@ -18,6 +18,6 @@ func main() {
 	}
 	var pc int
 	for pc < len(b) {
-		pc += disassemble(b, pc)
+		pc += emulator(b, pc)
 	}
 }
