@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	file, err := os.Open("invaders.h")
+	file, err := os.Open("invaders")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -17,7 +17,8 @@ func main() {
 		log.Fatal(err)
 	}
 	var pc int
+	var s state
 	for pc < len(b) {
-		pc += emulator(b, pc)
+		pc += emulator(&s, b)
 	}
 }
