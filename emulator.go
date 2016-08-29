@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type conditionCodes struct {
 	z   int
 	s   int
@@ -19,12 +21,17 @@ type state struct {
 	l      int
 	sp     int
 	pc     int
-	memory int
 	cc     conditionCodes
 	enable bool
 }
 
-func emulator(b []byte, pc int) int {
-	var op int = 1
+func emulator(s *state, b []byte) int {
+	op := 1
+	code := b[s.pc]
+	switch code {
+	default:
+		fmt.Printf("MISSING  %x\n", code)
+	}
+	s.pc += op
 	return op
 }
