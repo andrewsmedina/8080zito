@@ -69,6 +69,18 @@ func emulator(s *state, b []byte) int {
 		s.d = s.l
 	case 0x57:
 		s.d = s.a
+	case 0x58:
+		s.e = s.b
+	case 0x59:
+		s.e = s.c
+	case 0x5a:
+		s.e = s.d
+	case 0x5c:
+		s.e = s.h
+	case 0x5d:
+		s.e = s.l
+	case 0x5f:
+		s.e = s.a
 	default:
 		fmt.Printf("MISSING  %x\n", code)
 	}
