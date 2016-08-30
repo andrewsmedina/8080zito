@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func disassemble(b []byte, pc int) int {
-	var op int = 1
+	op := 1
 	code := b[pc]
 	switch code {
 	case 0x00:
