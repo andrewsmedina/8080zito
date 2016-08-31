@@ -36,9 +36,15 @@ func emulator(s *state, b []byte) int {
 	case 0x05:
 		s.b = s.b - 1
 		s.cc.z = s.b == 0
+	case 0x06:
+		s.b = int(b[s.pc+1])
+		op = 2
 	case 0x0d:
 		s.c = s.c - 1
 		s.cc.z = s.b == 0
+	case 0x0e:
+		s.c = int(b[s.pc+1])
+		op = 2
 	case 0x15:
 		s.d = s.d - 1
 		s.cc.z = s.b == 0
@@ -48,12 +54,18 @@ func emulator(s *state, b []byte) int {
 	case 0x25:
 		s.h = s.h - 1
 		s.cc.z = s.b == 0
+	case 0x26:
+		s.h = int(b[s.pc+1])
+		op = 2
 	case 0x2d:
 		s.l = s.l - 1
 		s.cc.z = s.b == 0
 	case 0x3d:
 		s.a = s.a - 1
 		s.cc.z = s.b == 0
+	case 0x3e:
+		s.a = int(b[s.pc+1])
+		op = 2
 	case 0x41:
 		s.b = s.c
 	case 0x42:
