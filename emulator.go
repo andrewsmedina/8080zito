@@ -29,99 +29,37 @@ func emulator(s *state, b []byte) int {
 	op := 1
 	code := b[s.pc]
 	switch code {
-	case 0x01:
+	case 0x00: // NOP
+	case 0x01: // LXI B,word
 		s.c = int(b[s.pc+1])
 		s.b = int(b[s.pc+2])
 		op = 3
-	case 0x05:
+	case 0x05: // DCR B
 		s.b = s.b - 1
 		s.cc.z = s.b == 0
-	case 0x06:
+	case 0x06: // MVI B,byte
 		s.b = int(b[s.pc+1])
 		op = 2
-	case 0x0d:
+	case 0x0d: // DCR C
 		s.c = s.c - 1
 		s.cc.z = s.b == 0
-	case 0x0e:
+	case 0x0e: // MVI C,byte
 		s.c = int(b[s.pc+1])
 		op = 2
-	case 0x11:
+	case 0x11: // LXI D,word
 		s.d = int(b[s.pc+1])
 		s.e = int(b[s.pc+2])
 		op = 3
-	case 0x15:
-		s.d = s.d - 1
-		s.cc.z = s.b == 0
-	case 0x1d:
-		s.e = s.e - 1
-		s.cc.z = s.b == 0
-	case 0x21:
+	case 0x21: // LXI H,word
 		s.h = int(b[s.pc+1])
 		s.l = int(b[s.pc+2])
 		op = 3
-	case 0x25:
-		s.h = s.h - 1
-		s.cc.z = s.b == 0
-	case 0x26:
+	case 0x26: // MVI H,byte
 		s.h = int(b[s.pc+1])
 		op = 2
-	case 0x2d:
-		s.l = s.l - 1
-		s.cc.z = s.b == 0
-	case 0x3d:
-		s.a = s.a - 1
-		s.cc.z = s.b == 0
-	case 0x3e:
+	case 0x3e: // MVI A,byte
 		s.a = int(b[s.pc+1])
 		op = 2
-	case 0x41:
-		s.b = s.c
-	case 0x42:
-		s.b = s.d
-	case 0x43:
-		s.b = s.e
-	case 0x44:
-		s.b = s.h
-	case 0x45:
-		s.b = s.l
-	case 0x47:
-		s.b = s.a
-	case 0x48:
-		s.c = s.b
-	case 0x4a:
-		s.c = s.d
-	case 0x4b:
-		s.c = s.e
-	case 0x4c:
-		s.c = s.h
-	case 0x4d:
-		s.c = s.l
-	case 0x4f:
-		s.c = s.a
-	case 0x50:
-		s.d = s.b
-	case 0x51:
-		s.d = s.c
-	case 0x53:
-		s.d = s.e
-	case 0x54:
-		s.d = s.h
-	case 0x55:
-		s.d = s.l
-	case 0x57:
-		s.d = s.a
-	case 0x58:
-		s.e = s.b
-	case 0x59:
-		s.e = s.c
-	case 0x5a:
-		s.e = s.d
-	case 0x5c:
-		s.e = s.h
-	case 0x5d:
-		s.e = s.l
-	case 0x5f:
-		s.e = s.a
 	default:
 		fmt.Printf("MISSING  %x\n", code)
 	}
