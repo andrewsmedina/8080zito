@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 type conditionCodes struct {
-	z   int
+	z   bool
 	s   int
 	p   int
 	cy  int
@@ -35,18 +35,25 @@ func emulator(s *state, b []byte) int {
 		op = 3
 	case 0x05:
 		s.b = s.b - 1
+		s.cc.z = s.b == 0
 	case 0x0d:
 		s.c = s.c - 1
+		s.cc.z = s.b == 0
 	case 0x15:
 		s.d = s.d - 1
+		s.cc.z = s.b == 0
 	case 0x1d:
 		s.e = s.e - 1
+		s.cc.z = s.b == 0
 	case 0x25:
 		s.h = s.h - 1
+		s.cc.z = s.b == 0
 	case 0x2d:
 		s.l = s.l - 1
+		s.cc.z = s.b == 0
 	case 0x3d:
 		s.a = s.a - 1
+		s.cc.z = s.b == 0
 	case 0x41:
 		s.b = s.c
 	case 0x42:
